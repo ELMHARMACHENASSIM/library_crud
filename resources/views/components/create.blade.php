@@ -9,6 +9,11 @@
 </head>
 
 <body>
+    <nav>
+        <ul>
+            <li><a href={{route('home.index')}}>home</a></li>
+        </ul>
+    </nav>
     <form action={{ route('books.store') }} method="POST" enctype="multipart/form-data">
         @csrf
         <div>
@@ -55,7 +60,7 @@
         <tbody>
             @foreach ($books as $book)
                 <tr>
-                    <th scope="row">{{ $book->id }}</th>
+                    <th scope="row">{{ $book->id }} /{{$loop->iteration}}</th>
                     <td>{{ $book->titre }}</td>
                     <td>{{ $book->auteur }}</td>
                     <td>{{ $book->resume }}</td>

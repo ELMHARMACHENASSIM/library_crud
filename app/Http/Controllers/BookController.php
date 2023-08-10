@@ -21,7 +21,7 @@ class BookController extends Controller
             'resume' => ['required'],
             'prix' => ['required'],
             'stock' => ['required'],
-            'imageurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imageurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:8192',
 
         ]);
         $imageName = time() . '.' . $request->file('imageurl')->getClientOriginalExtension();
@@ -36,7 +36,7 @@ class BookController extends Controller
         ];
         Book::create($data);
      
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Image uploaded successfully.');
      
     }
     public function update(Request $request ,Book $book){
@@ -46,7 +46,7 @@ class BookController extends Controller
             'resume' => ['required'],
             'prix' => ['required'],
             'stock' => ['required'],
-            'imageurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'imageurl' => 'required|image|mimes:jpeg,png,jpg,gif|max:8192',
         ]);
         $imageName = time() . '.' . $request->file('imageurl')->getClientOriginalExtension();
         $request->file('imageurl')->move(public_path('images'), $imageName);
@@ -61,7 +61,7 @@ class BookController extends Controller
 
         $book->update($data);
       
-      return redirect()->back();
+      return redirect()->back()->with('success', 'Image uploaded successfully.');
 
     }
     public function delete(Book $book){
